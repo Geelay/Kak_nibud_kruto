@@ -9,16 +9,29 @@ from tkinter import*
 import random
 
 root = Tk()
-root.geometry('800x600')
+root.geometry('1400x700')
 
 canv = Canvas(root, bg = 'skyblue')
 canv.pack(fill = BOTH, expand = 1)
 
+coordinate_x_stone_ordinary = [50, 197, 260, 620, 705, 900, 1000] 
+"""координаты камней одного вида"""
+coordinate_x_stone_complicated = [100, 350, 560, 800, 1100, 1200, 1300] 
+"""координаты камней другого вида"""
+cloud_distance_x = [25, 15, -25, -25, 0]
+"""координаты смещения по Ox, используемые в функции рисования облака"""
+cloud_distance_y = [0, 20, 0, 0, 0]
+"""координаты смещения по Oy, используемые в функции рисования облака"""
+coordinate_x_cloud = [100, 350, 600, 900, 1200]
+"""начальные координаты облака по Ох"""
+coordinate_y_cloud = [60, 100, 80, 55, 110]
+"""начальные координаты облака по Оу"""
+
 def grass():
     x1 = 0
-    for _ in range(1600):
-        y2 = random.randint(585, 590)
-        canv.create_rectangle(x1, 600, x1 + 1, y2, fill = 'green', outline = 'green')
+    for _ in range(2800):
+        y2 = random.randint(685, 690)
+        canv.create_rectangle(x1, 700, x1 + 1, y2, fill = 'green', outline = 'green')
         x1 += 0.5
 
 def stone_ordinary(x, y):     
@@ -35,23 +48,34 @@ def stone_complicated(x, y):
         y1 = random.randint(y - 20, y - 5)
         canv.create_oval(x1, y1, x1 + 2, y1 - 2, fill = 'black', outline = 'black')
 
-canv.create_polygon((750, 600), (780, 400), (785, 430), (790, 330), (795, 290), (800, 340),
-                    (800, 600), fill = 'brown', outline = 'brown')
-canv.create_polygon((775, 433), (776, 438), (777, 435), (780, 437), (785, 430),
-                    (780, 400), (775, 433), fill = 'white', outline = 'brown')
-canv.create_polygon((788.5, 340), (795, 290), (800, 340), (790, 338), (789, 334), (788.5, 340), 
-                    fill = 'white',
-                    outline = 'brown')
-grass()
-stone_ordinary(50, 590)
-stone_complicated(300, 590)
-stone_ordinary(650, 593)
-stone_complicated(100, 591)
-stone_ordinary(250, 597)
-stone_complicated(505, 597)
-stone_ordinary(390, 590)
-stone_ordinary(780, 590)
-stone_ordinary(720, 594)
-stone_ordinary(690, 593)
+def sun():
+    canv.create_oval((1250, 90), (1500, -90), fill = 'gold', outline = 'gold')
+    
+def mountain():    
+    canv.create_polygon((1200, 700), (1350, 200), (1400, 700), (1200, 700), fill = 'lemonchiffon4',
+                        outline = 'lemonchiffon4')
+    canv.create_polygon((1300, 367), (1350, 200), (1360, 310), (1350, 400), (1340, 370), 
+                        (1335, 390), (1330, 410), (1325, 400), (1320, 415), (1305, 385), 
+                        (1300, 367), fill = 'white', outline = 'lemonchiffon4')
+    canv.create_oval((1250, 90), (1500, -90), fill = 'gold', outline = 'gold')
 
+def cloud(x, y):
+    for i in range(5):
+        canv.create_oval((x, y), (x + 30, y - 30), fill = 'white', outline = 'white')
+        x += cloud_distance_x[i]
+        y += cloud_distance_y[i]
+    
+def main():
+    mountain()
+    grass()
+    sun()
+
+    for i in range(7):
+        stone_ordinary(coordinate_x_stone_ordinary[i], random.randint(690, 697))
+        stone_complicated(coordinate_x_stone_complicated[i], random.randint(690, 697))
+
+    for i in range(5):
+        cloud(coordinate_x_cloud[i], coordinate_y_cloud[i])
+    
+main()
 root.mainloop()
