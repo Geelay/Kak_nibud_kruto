@@ -14,31 +14,38 @@ class Shop(Frame):
 
         menubar = Menu(self.parent)
         self.fileMenu = Menu(self.parent, tearoff=1)
-        self.fileMenu.add_command(label="Exit", command=self.onExit)
-        menubar.add_cascade(label="File", menu=self.fileMenu)
+        self.fileMenu.add_command(label="Новая игра")
+        self.fileMenu.add_command(label="Справка")
+        self.fileMenu.add_command(label="Выход", command=self.onExit)
+        menubar.add_cascade(label="Файл", menu=self.fileMenu)
 
-        toolbar = Frame(self.parent, bd=1, relief=RAISED)
+        toolbar = Frame(self.parent, bd=3, relief=RAISED)
 
-        shieldbutton = Button(toolbar, text="ЗАЩИТА", relief=FLAT, width=10, height=6)
-        firebutton = Button(toolbar, text="ОРУЖИЕ", relief=FLAT, width=10, height=6)
-        powerupbutton = Button(toolbar, text="УЛУЧШЕНИЕ", relief=FLAT, width=10, height=6)
-        otherbutton = Button(toolbar, text="ПРОЧЕЕ", relief=FLAT, width=10, height=6)
-        shieldbutton.pack(side=TOP, padx=1, pady=1)
-        firebutton.pack(side=TOP, padx=1, pady=1)
-        powerupbutton.pack(side=TOP, padx=1, pady=1)
-        otherbutton.pack(side=TOP, padx=1, pady=1)
+        shieldbutton = Button(toolbar, text="ЗАЩИТА", relief=FLAT, width=10, height=6, font='arial 12')
+        firebutton = Button(toolbar, text="ОРУЖИЕ", relief=FLAT, width=10, height=6, font='arial 12')
+        powerupbutton = Button(toolbar, text="УЛУЧШЕНИЕ", relief=FLAT, width=10, height=6, font='arial 12')
+        otherbutton = Button(toolbar, text="ПРОЧЕЕ", relief=FLAT, width=10, height=6, font='arial 12')
+        shieldbutton.pack(side=TOP, padx=2, pady=2)
+        firebutton.pack(side=TOP, padx=2, pady=2)
+        powerupbutton.pack(side=TOP, padx=2, pady=2)
+        otherbutton.pack(side=TOP, padx=2, pady=2)
 
         toolbar.pack(side=RIGHT, fill=X)
         self.parent.config(menu=menubar)
         self.pack()
+
+        #popupmenu = Menu(tearoff=0)
+       # popupmenu.add_command(label="")
+       # popupmenu.add_command(label=)
+        #popupmenu.add_command(label=)
 
     def onExit(self):
         self.quit()
 
 
 def main():
-    root =Tk()
-    root.geometry("250x150+300+300")
+    root = Tk()
+    root.geometry('1240x600+0+0')
     app = Shop(root)
     root.mainloop()
 
