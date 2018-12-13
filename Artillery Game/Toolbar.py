@@ -1,6 +1,5 @@
-# from pil import Image, ImageTk
 from tkinter import Tk, Frame, Menu
-from tkinter import Button, LEFT, RIGHT, TOP, Y, FLAT, RAISED, X
+from tkinter import Button, RIGHT, TOP, FLAT, RAISED, X
 
 
 class Shop(Frame):
@@ -21,10 +20,14 @@ class Shop(Frame):
 
         toolbar = Frame(self.parent, bd=3, relief=RAISED)
 
-        shieldbutton = Button(toolbar, text="ЗАЩИТА", relief=FLAT, width=10, height=6, font='arial 12')
-        firebutton = Button(toolbar, text="ОРУЖИЕ", relief=FLAT, width=10, height=6, font='arial 12')
-        powerupbutton = Button(toolbar, text="УЛУЧШЕНИЕ", relief=FLAT, width=10, height=6, font='arial 12')
-        otherbutton = Button(toolbar, text="ПРОЧЕЕ", relief=FLAT, width=10, height=6, font='arial 12')
+        shieldbutton = Button(toolbar, text="ЗАЩИТА", relief=FLAT, width=10, height=6, font='arial 12', bg="#FF5733",
+                              fg="#641E16", activebackground="#F4D03F")
+        firebutton = Button(toolbar, text="ОРУЖИЕ", relief=FLAT, width=10, height=6, font='arial 12', bg="#FF5733",
+                            fg="#641E16", activebackground="#F4D03F")
+        powerupbutton = Button(toolbar, text="УЛУЧШЕНИЕ", relief=FLAT, width=10, height=6, font='arial 12',
+                               bg="#FF5733",  fg="#641E16",  activebackground="#F4D03F")
+        otherbutton = Button(toolbar, text="ПРОЧЕЕ", relief=FLAT, width=10, height=6, font='arial 12', bg="#FF5733",
+                             fg="#641E16",  activebackground="#F4D03F")
         shieldbutton.pack(side=TOP, padx=2, pady=2)
         firebutton.pack(side=TOP, padx=2, pady=2)
         powerupbutton.pack(side=TOP, padx=2, pady=2)
@@ -33,11 +36,6 @@ class Shop(Frame):
         toolbar.pack(side=RIGHT, fill=X)
         self.parent.config(menu=menubar)
         self.pack()
-
-        #popupmenu = Menu(tearoff=0)
-       # popupmenu.add_command(label="")
-       # popupmenu.add_command(label=)
-        #popupmenu.add_command(label=)
 
     def onExit(self):
         self.quit()
