@@ -25,7 +25,7 @@ class Shop(Frame):
         firebutton = Button(toolbar, text="ОРУЖИЕ", relief=FLAT, width=10, height=6, font='arial 12', bg="#FF5733",
                             fg="#641E16",  highlightcolor="#CB4335", activebackground="#F4D03F")
         powerbutton = Button(toolbar, text="УЛУЧШЕНИЕ", relief=FLAT, width=10, height=6, font='arial 12',
-                             bg="#FF5733",  fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F"),
+                             bg="#FF5733",  fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
         otherbutton = Button(toolbar, text="ПРОЧЕЕ", relief=FLAT, width=10, height=6, font='arial 12', bg="#FF5733",
                              fg="#641E16",  highlightcolor="#CB4335", activebackground="#F4D03F")
         shieldbutton.pack(side=TOP, padx=2, pady=2)
