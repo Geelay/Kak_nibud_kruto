@@ -37,7 +37,7 @@ class Shop(Frame):
         self.parent.config(menu=menubar)
         self.pack()
 
-        def shieldbutton_click(event):
+        def shieldbutton_click(event):     # сюда нужно внести функции, меняющие свойства замка и оружия #TODO
             print ("установить защиту")
 
         def firebutton_click(event):
@@ -60,7 +60,9 @@ class Shop(Frame):
 
 def main():
     root = Tk()
-    root.geometry('1240x600+0+0')
+    root.overrideredirect(True)
+    root.overrideredirect(False)
+    root.attributes('-fullscreen', True)
     app = Shop(root)
     root.mainloop()
 
