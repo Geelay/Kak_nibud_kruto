@@ -2,18 +2,22 @@ from tkinter import *
 
 root = Tk()
 frame = Frame(root)
-root.geometry('1200x600')
+root.overrideredirect(True)
+root.overrideredirect(False)
+root.attributes('-fullscreen', True)
 canv = Canvas(root, bg='white')
 canv.pack(fill=BOTH, expand=1)
 photo = PhotoImage(file="pushkagame.png")
-Label(root, image=photo).place(x=0, y=0)  # title
-btn = Button(root,   text="Start game",  width=30, height=5, bg="#FF5733", fg="black")
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+Label(root, image=photo).place(x=screen_width/2, y=screen_height/2, anchor="center")
+btn = Button(root, text="Start game", width=30, height=5, bg="#FF5733", fg="black")
 
 
 def deletescreen(event):
     pass
 
 
-btn.bind("<Button-1>", deletescreen)  # при нажатии ЛКМ на кнопку вызывается функция
-btn.pack()  # расположить кнопку на главном окне
+btn.bind("<Button-1>", deletescreen)
+btn.pack()
 root.mainloop()
