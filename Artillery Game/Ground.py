@@ -78,10 +78,21 @@ def cloud(x, y):
         y += cloud_distance_y[i]
 
 
+def menu():
+    menubar = Menu(root)
+    root.config(menu=menubar)
+    filemenu = Menu(root, tearoff=1)
+    filemenu.add_command(label="Новая игра")
+    filemenu.add_command(label="Справка")
+    filemenu.add_command(label="Выход", command=root.quit)
+    menubar.add_cascade(label="Файл", menu=filemenu)
+
+
 def main():
     mountain()
     grass()
     sun()
+    menu()
 
     for i in range(7):
         stone_ordinary(coordinate_x_stone_ordinary[i], random.randint(690, 697))
