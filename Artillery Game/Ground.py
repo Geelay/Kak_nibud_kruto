@@ -82,7 +82,44 @@ def menu():
     menubar.add_cascade(label="Файл", menu=filemenu)
 
 
+def toolbar():
+    bottomframe = Frame(root)
+    bottomframe.pack(side=BOTTOM)
+
+    h = 1
+
+    shieldbutton = Button(bottomframe, text="ЗАЩИТА", relief=FLAT, width=30, height=h, font='arial 12', bg="#FF5733",
+                          fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
+    firebutton = Button(bottomframe, text="ОРУЖИЕ", relief=FLAT, width=30, height=h, font='arial 12', bg="#FF5733",
+                        fg="#641E16",  highlightcolor="#CB4335", activebackground="#F4D03F")
+    powerbutton = Button(bottomframe, text="УЛУЧШЕНИЕ", relief=FLAT, width=30, height=h, font='arial 12',
+                         bg="#FF5733",  fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
+    otherbutton = Button(bottomframe, text="ПРОЧЕЕ", relief=FLAT, width=30, height=h, font='arial 12', bg="#FF5733",
+                         fg="#641E16",  highlightcolor="#CB4335", activebackground="#F4D03F")
+    shieldbutton.pack(side=LEFT, padx=2, pady=2)
+    firebutton.pack(side=LEFT, padx=2, pady=2)
+    powerbutton.pack(side=LEFT, padx=2, pady=2)
+    otherbutton.pack(side=LEFT, padx=2, pady=2)
+
+
+def firetablet():
+    upperframe = Frame(root)
+    upperframe.place(x=2, y=2)
+
+    up_btn = Button(upperframe, text="Up", width=9, height=4, font='arial 12', bg="#FF5733", fg="#641E16",
+                    activebackground="#F4D03F")
+    fire_btn = Button(upperframe, text="Fire", width=9, height=4, font='arial 12', bg="#FF5733", fg="#641E16",
+                      activebackground="#F4D03F")
+    down_btn = Button(upperframe, text="Down", width=9, height=4, font='arial 12', bg="#FF5733", fg="#641E16",
+                      activebackground="#F4D03F")
+    up_btn.pack(side=TOP)
+    fire_btn.pack(side=TOP)
+    down_btn.pack(side=TOP)
+
+
 def main():
+    toolbar()
+    firetablet()
     mountain()
     grass()
     rack(30, 690)
