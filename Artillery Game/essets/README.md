@@ -1,1 +1,1 @@
-They are needed to run the game colorfully.
+~Необходимы для красочной игры.~
