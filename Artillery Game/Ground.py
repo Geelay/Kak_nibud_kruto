@@ -8,10 +8,17 @@ from tkinter import *
 import random
 
 root = Tk()
-root.geometry('1400x700')
-
-canv = Canvas(root, bg='skyblue')
+frame = Frame(root)
+root.overrideredirect(True)
+root.overrideredirect(False)
+root.attributes('-fullscreen', True)
+canv = Canvas(root, bg='white')
 canv.pack(fill=BOTH, expand=1)
+photo = PhotoImage(file="backy.png")
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+canv.create_image(screen_width/2, screen_height/2, image=photo, anchor=CENTER)
+
 
 coordinate_x_stone_ordinary = [50, 197, 260, 620, 705, 900, 1000]
 """координаты камней одного вида"""
