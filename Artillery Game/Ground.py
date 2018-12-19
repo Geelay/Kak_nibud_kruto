@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec  2 00:59:16 2018
-@author: Валерия
-"""
-
 from tkinter import *
 import random
 
@@ -19,10 +13,9 @@ screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 canv.create_image(screen_width/2, screen_height/2, image=photo, anchor=CENTER)
 
-
-coordinate_x_stone_ordinary = [50, 197, 260, 620, 705, 900, 1000]
+coordinate_x_stone_ordinary = [50, 197, 260, 330, 415, 500, 620, 705, 750, 810, 900, 1000, 1260]
 """координаты камней одного вида"""
-coordinate_x_stone_complicated = [100, 350, 560, 800, 1100, 1200, 1300]
+coordinate_x_stone_complicated = [10, 100, 360, 560, 800, 1100, 1200, 1300, 1400, 1430, 1450, 1600, 1700]
 """координаты камней другого вида"""
 cloud_distance_x = [25, 15, -25, -25, 0]
 """координаты смещения по Ox, используемые в функции рисования облака"""
@@ -36,10 +29,16 @@ coordinate_y_cloud = [60, 100, 80, 55, 110]
 
 def grass():
     x1 = 0
+    canv.create_rectangle(0, 900, 1600, 700, fill='#3bad14', outline='#3bad14')
     for _ in range(2800):
         y2 = random.randint(685, 690)
-        canv.create_rectangle(x1, 700, x1 + 1, y2, fill='green', outline='green')
+        canv.create_rectangle(x1, 700, x1 + 0.5, y2, fill='#3bad14', outline='#3bad14')
         x1 += 0.5
+
+
+def rack(x, y):
+    canv.create_polygon((x, y), (x + 80, y - 20), (x + 160, y - 20), (x + 240, y),
+                        (x, y), fill='#677c5f', outline='#677c5f')
 
 
 def stone_ordinary(x, y):
@@ -58,17 +57,12 @@ def stone_complicated(x, y):
         canv.create_oval(x1, y1, x1 + 2, y1 - 2, fill='black', outline='black')
 
 
-def sun():
-    canv.create_oval((1250, 90), (1500, -90), fill='gold', outline='gold')
-
-
 def mountain():
     canv.create_polygon((1200, 700), (1350, 200), (1400, 700), (1200, 700), fill='lemonchiffon4',
                         outline='lemonchiffon4')
     canv.create_polygon((1300, 367), (1350, 200), (1360, 310), (1350, 400), (1340, 370),
                         (1335, 390), (1330, 410), (1325, 400), (1320, 415), (1305, 385),
                         (1300, 367), fill='white', outline='lemonchiffon4')
-    canv.create_oval((1250, 90), (1500, -90), fill='gold', outline='gold')
 
 
 def cloud(x, y):
@@ -91,13 +85,13 @@ def menu():
 def main():
     mountain()
     grass()
-    sun()
+    rack(30, 690)
+    rack(1000, 690)
     menu()
 
-    for i in range(7):
-        stone_ordinary(coordinate_x_stone_ordinary[i], random.randint(690, 697))
-        stone_complicated(coordinate_x_stone_complicated[i], random.randint(690, 697))
-
+    for i in range(13):
+        stone_ordinary(coordinate_x_stone_ordinary[i], random.randint(697, 760))
+        stone_complicated(coordinate_x_stone_complicated[i], random.randint(697, 760))
     for i in range(5):
         cloud(coordinate_x_cloud[i], coordinate_y_cloud[i])
 
