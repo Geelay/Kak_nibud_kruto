@@ -2,7 +2,6 @@ from tkinter import *
 import random
 
 
-
 coordinate_x_stone_ordinary = [50, 197, 260, 330, 415, 500, 620, 705, 750, 810, 900, 1000, 1260]
 """координаты камней одного вида"""
 coordinate_x_stone_complicated = [10, 100, 360, 560, 800, 1100, 1200, 1300, 1400, 1430, 1450, 1600, 1700]
@@ -96,6 +95,46 @@ def game():
         firebutton.pack(side=LEFT, padx=2, pady=2)
         powerbutton.pack(side=LEFT, padx=2, pady=2)
         otherbutton.pack(side=LEFT, padx=2, pady=2)
+
+        def shieldbutton_click(event):
+            shieldframe = Frame(root)
+            shieldframe.place(x=screen_width*1/5, y=screen_height - 60, anchor=SW)
+            yellowshield = Button(shieldframe, text="жёлтое поле", relief=FLAT, width=10, height=1, font='arial 12',
+                                  bg="#FF5733", fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
+            blueshield = Button(shieldframe, text="синее поле", relief=FLAT, width=10, height=1, font='arial 12',
+                                  bg="#FF5733", fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
+            redshield = Button(shieldframe, text="красное поле", relief=FLAT, width=10, height=1, font='arial 12',
+                                  bg="#FF5733", fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
+            yellowshield.pack(side=TOP)
+            blueshield.pack(side=TOP)
+            redshield.pack(side=TOP)
+
+
+        def firebutton_click(event):
+            fireframe = Frame(root)
+            fireframe.place(x=screen_width * 2 / 5, y=screen_height - 60, anchor=SW)
+            ball = Button(fireframe, text="ball", relief=FLAT, width=10, height=1, font='arial 12',
+                                  bg="#FF5733", fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
+            ball.pack(side=TOP)
+
+        def powerbutton_click(event):
+            powerframe = Frame(root)
+            powerframe.place(x=screen_width * 3 / 5, y=screen_height - 60, anchor=SW)
+            luchshe = Button(powerframe, text="luchshe", relief=FLAT, width=10, height=1, font='arial 12',
+                                  bg="#FF5733", fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
+            luchshe.pack(side=TOP)
+
+        def otherbutton_click(event):
+            otherframe = Frame(root)
+            otherframe.place(x=screen_width * 4 / 5, y=screen_height - 60, anchor=SW)
+            fignya = Button(otherframe, text="fignya", relief=FLAT, width=10, height=1, font='arial 12',
+                                  bg="#FF5733", fg="#641E16", highlightcolor="#CB4335", activebackground="#F4D03F")
+            fignya.pack(side=TOP)
+
+        shieldbutton.bind("<Button-1>", shieldbutton_click)
+        firebutton.bind("<Button-1>", firebutton_click)
+        powerbutton.bind("<Button-1>", powerbutton_click)
+        otherbutton.bind("<Button-1>", otherbutton_click)
 
     def firetablet():
         upperframe = Frame(root)
