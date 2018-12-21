@@ -117,7 +117,7 @@ class None_protection(Protection):
         
     def draw(self):
         canv.create_oval((self.x, self.y), (self.x + 2 * self.radius, self.y + 2 * self.radius),
-                         fill='', outline='', width=4)
+                         fill='', outline=self.color, width=4)
         
 class Termo_Protection(Protection):
     def __init__(self, x, y):
@@ -453,8 +453,13 @@ class Shell:
         canv.delete(self.oval)
         
 
-    def hit_checker(self):
-        if self.x > 1200 and self.x < 1350 and self.y > 600 and self.y < 700:
+    def hit_checker(self, enemy_castle):
+
+        if enemy_castle.health > 100:
+            t = 500
+        else:
+            t = 700
+        if self.x > 1200 and self.x < 1350 and self.y > t and self.y < 700:
             self.destroy()
             self.x = 10000
             self.y = 10000
@@ -561,7 +566,10 @@ def down_handler(event):
     motion = 1
     pushka.aim_down()
     
-
+def shield_n(event):
+    global shield
+    shield = None_protection(gx, gy)
+    shield.draw()
 def shield_t(event):
     global shield, balan, money
     if money > 49:
@@ -611,7 +619,11 @@ def charge_inc(event):
     
   
 def shoot(event):
-    global shell, time, money, balan, pushka
+    global shell, time, money, balan, pushka, shield
+    if shield.color != '#FFFFFF':
+        money -= 50
+        canv.delete(balan)
+        balan = canv.create_text(screen_width/2, 50, text= str(money) + '☫', font='Arial 50')        
     if pushka.number != 0:
         money -= 50
         canv.delete(balan)
@@ -642,7 +654,7 @@ def hit_castle():
 def fly():
     global shell, enemy_castle
     shell.go(0.02)
-    if shell.hit_checker() == True:
+    if shell.hit_checker(enemy_castle) == True:
         print('hit')
         hit_castle()
     root.after(time, fly)   
@@ -663,6 +675,14 @@ def k_gunup(event):
         money -= 50
         canv.delete(balan)
         balan = canv.create_text(screen_width/2, 50, text= str(money) + '☫', font='Arial 50') 
+def n_gunup(event):
+    global gun_number, pushka, shellcolor
+    shellcolor = 'black'
+    gun_number = 0
+    pushka.delete_self()
+    pushka.number = gun_number
+    pushka.draw()
+    
 def t_gunup(event):
     global gun_number, pushka, shellcolor, money, balan
     if money > 49:
@@ -700,7 +720,7 @@ def selfhit():
             if C1.healthful < 1:
                 root.destroy()
                 start.finish2()            
-        if shield.color != '#B8860B' and enemy_pushka.number == 1:
+        elif shield.color != '#B8860B' and enemy_pushka.number == 1:
             canv.delete(shp) 
             C1.healthful -= 50
             shp = canv.create_text(150, 650, text= str(C1.healthful) + '/' + str(C1.health), font='Arial 15', fill = '#B00000')
@@ -708,7 +728,7 @@ def selfhit():
                 root.destroy()
                 start.finish2()
 
-        if shield.color != '#92000A' and enemy_pushka.number == 2:
+        elif shield.color != '#92000A' and enemy_pushka.number == 2:
             canv.delete(shp) 
             C1.healthful -= 50
             shp = canv.create_text(150, 650, text= str(C1.healthful) + '/' + str(C1.health), font='Arial 15', fill = '#B00000')
@@ -716,7 +736,7 @@ def selfhit():
                 root.destroy()
                 start.finish2()
 
-        if shield.color != '#1B5583' and enemy_pushka.number == 3: 
+        elif shield.color != '#1B5583' and enemy_pushka.number == 3: 
             canv.delete(shp) 
             C1.healthful -= 50
             shp = canv.create_text(150, 650, text= str(C1.healthful) + '/' + str(C1.health), font='Arial 15', fill = '#B00000')
@@ -798,7 +818,7 @@ def toolbar():
             blueshield.bind("<Button-1>", shield_e)            
             redshield.pack(side=TOP)
             redshield.bind("<Button-1>", shield_t)
-            shieldbutton.bind("<Button-1>", shieldbutton_delete)
+            shieldbutton.bind("<Button-1>", shield_n)
 
         def firebutton_click(event):
             fireframe = Frame(root)
@@ -815,6 +835,7 @@ def toolbar():
             t_gun.bind("<Button-1>", t_gunup)
             e_gun.pack(side=TOP)
             e_gun.bind("<Button-1>", e_gunup)
+            firebutton.bind("<Button-1>", n_gunup)
 
 
         def otherbutton_click(event):
