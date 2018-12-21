@@ -458,7 +458,7 @@ class Shell:
         if enemy_castle.health > 100:
             t = 500
         else:
-            t = 700
+            t = 600
         if self.x > 1200 and self.x < 1350 and self.y > t and self.y < 700:
             self.destroy()
             self.x = 10000
